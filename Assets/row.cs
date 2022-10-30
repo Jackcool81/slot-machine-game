@@ -1,14 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
 public class row : MonoBehaviour
 {
     float x = 0.00025f;
     // Start is called before the first frame update
     // public int stop = 0;
+    RectTransform rect;
     void Start()
     {
+        rect = GetComponent<RectTransform>();
     }
 
     public void startRotating(int stop)
@@ -25,7 +27,7 @@ public class row : MonoBehaviour
             //     print("hello");
             //     break; //cotton candy break
             //  }
-            float current = Mathf.Round(transform.position.y * 100f) / 100f;
+            float current = Mathf.Round(rect.position.y * 100f) / 100f;
             if (current == -0.99f && stop == 3 ){
                 print("marsh");
                 break; //marsh  break
@@ -60,12 +62,12 @@ public class row : MonoBehaviour
             }
 
             //print(current);
-            if(transform.position.y <= -2.80){
-            transform.position = new Vector2(transform.position.x, 1.31f);
+            if(rect.position.y <= -2.80){
+            rect.position = new Vector2(rect.position.x, 1.31f);
    
             }
             
-            transform.position = new Vector2(transform.position.x,transform.position.y - .05f);
+            rect.position = new Vector2(rect.position.x,rect.position.y - .05f);
             yield return new WaitForSeconds(x);
         }
     }

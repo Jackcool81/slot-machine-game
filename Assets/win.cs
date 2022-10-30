@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using UnityEngine.UI;
 public class win : MonoBehaviour
 {
     private AudioSource source;
@@ -13,11 +14,14 @@ public class win : MonoBehaviour
     public GameObject rowSpinnerScript;
     public bool TimeUp = false;
     public  Vector3 textpos; 
+    public RectTransform rect;
     // Start is called before the first frame update
     void Start()
     {
         source = GetComponent<AudioSource>();
-        textpos =  text.transform.position;
+        
+        rect = text.GetComponent<RectTransform>();
+        textpos =  rect.position;
 
     }
 
@@ -37,9 +41,9 @@ public class win : MonoBehaviour
                 TimeUp = true;
                 break;
             }
-            light.GetComponent<SpriteRenderer>().color = Color.white;
+            light.GetComponent<Image>().color = Color.white;
             yield return new WaitForSeconds(waitTillNext);
-            light.GetComponent<SpriteRenderer>().color = Color.gray;
+            light.GetComponent<Image>().color = Color.gray;
             yield return new WaitForSeconds(waitTillNext);
         }
         if(TimeUp == false){
@@ -59,15 +63,15 @@ public class win : MonoBehaviour
             {
                 yield break;
             }
-            if(text.transform.position.x <= 1.80){
-                text.transform.position = new Vector2(11.53f, text.transform.position.y);
+            if(rect.position.x <= 1.80){
+                rect.position = new Vector2(11.53f, rect.position.y);
    
             }
             
-            text.transform.position = new Vector2(text.transform.position.x - 0.5f, text.transform.position.y);
+            rect.position = new Vector2(rect.position.x - 0.5f, rect.position.y);
             yield return new WaitForSeconds(0.1f);
         }
-        text.transform.position = textpos;
+        rect.position = textpos;
         yield return new WaitForSeconds(1);
     }
 
