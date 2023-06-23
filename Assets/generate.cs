@@ -59,7 +59,6 @@ public class generate : MonoBehaviour
         }
         //15 Marsh
         if (x>=15 && x<30){
-            print("Marshmallows");
              ans[0] = 3;
              ans[1] = 3;
              ans[2] = 3;
@@ -67,7 +66,6 @@ public class generate : MonoBehaviour
         }
         //20 Cotton
          if (x>=30 && x<50){
-            print("Cotton Candy");
              ans[0] = 2;
              ans[1] = 2;
              ans[2] = 2;
@@ -75,15 +73,13 @@ public class generate : MonoBehaviour
         }
         //20 Gumdrop
          if (x>=50 && x<70){
-            print("Gumdrops");
              ans[0] = 1;
              ans[1] = 1;
              ans[2] = 1;
             return ans;
         }
         //40 Hearts
-         if (x>= 70){
-            print("Chocolate Hearts");
+        if (x>= 70){
              ans[0] = 0;
              ans[1] = 0;
              ans[2] = 0;

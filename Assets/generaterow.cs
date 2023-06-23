@@ -53,7 +53,7 @@ public class generaterow : MonoBehaviour
         // }
         string textcoin = inputter.text;
         print(textcoin);
-        //3 if statements 
+   
         if (textcoin == "1")
         {
             print("going into 1");
@@ -97,6 +97,7 @@ coinText.GetComponent<TextMeshProUGUI>().text = PlayerCoin.ToString() + " Coins"
             print("Mixed");
         }
         else {
+            print("Winner");
             winner = true;
         }
         //mixing or matching numbers
@@ -105,7 +106,7 @@ coinText.GetComponent<TextMeshProUGUI>().text = PlayerCoin.ToString() + " Coins"
             //[1,2,3] 
             i.GetComponent<row>().startRotating(ans[count]); //ROTATE() using the sequence we made
             count++;
-            yield return new WaitForSeconds(4.25f);
+            yield return new WaitForSeconds(1f);
         }
         if (winner == true)
         {
@@ -113,7 +114,7 @@ coinText.GetComponent<TextMeshProUGUI>().text = PlayerCoin.ToString() + " Coins"
             source.PlayOneShot(winningSound);
             if (ans[0] == 5)
             {
-                print("you get trriple money");
+               
                 if (cointotal == 3)
                 {
                     cointotal = cointotal * 3;
@@ -123,44 +124,46 @@ coinText.GetComponent<TextMeshProUGUI>().text = PlayerCoin.ToString() + " Coins"
             }
             if (ans[0] == 4)
             {
-                print("you get trriple money");
                 cointotal = cointotal * 3;
                 PlayerCoin = PlayerCoin+cointotal;
             }
             if (ans[0] == 3)
             {
-                print("you get double money");
                 cointotal = cointotal * 2;
                 PlayerCoin = PlayerCoin+cointotal;
             }
             if (ans[0] == 2)
             {
-                print("you get double money");
                 cointotal = cointotal * 2;
                 PlayerCoin = PlayerCoin+cointotal;
             }
             if (ans[0] == 1)
             {
-                print("you get one money");
                 cointotal = cointotal + 1;
                 PlayerCoin = PlayerCoin+cointotal;
             }
             if (ans[0] == 0)
             {
-                print("you get one money");
                 cointotal = cointotal + 1 ;
                 PlayerCoin = PlayerCoin+cointotal;
             }
 
                     coinText.GetComponent<TextMeshProUGUI>().text = PlayerCoin.ToString() + " Coins";
 
-            print("I am a winner");
             winScript.GetComponent<win>().flashLights();
             winScript.GetComponent<win>().panText();
             winner = false;
         
         }
-        
+        else{
+              for(int i = 0; i < 3; i++) //go through all our slots and spin them all
+        {
+            //[1,2,3] 
+            rows[i].transform.position = new Vector3(rows[i].transform.position.x, 1.31f, rows[i].transform.position.z);
+           
+        }
+        }
+      
     }
 
     // Update is called once per frame
@@ -176,7 +179,12 @@ coinText.GetComponent<TextMeshProUGUI>().text = PlayerCoin.ToString() + " Coins"
             timeRemaining = 3.5f;
             winScript.GetComponent<win>().TimeUp = false;
             winScript.GetComponent<win>().text.transform.position = winScript.GetComponent<win>().textpos;
-
+              for(int i = 0; i < 3; i++) //go through all our slots and spin them all
+        {
+            //[1,2,3] 
+            rows[i].transform.position = new Vector3(rows[i].transform.position.x, 1.31f, rows[i].transform.position.z);
+           
+        }
 
         }
     }
